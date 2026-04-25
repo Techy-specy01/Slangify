@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slangify — Decode the Internet</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════
+       NAVBAR
+  ══════════════════════════════════════════ -->
+  <nav class="navbar">
+    <a href="#" class="logo" onclick="showHome()">
+      <span class="logo-icon">✦</span> Slangify
+    </a>
+    <div class="nav-actions">
+      <button class="nav-btn" id="favBtn" onclick="showFavorites()">
+        <span>💾</span> Saved
+        <span class="fav-count" id="favCount">0</span>
+      </button>
+      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+        <span class="theme-icon">🌙</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════════
+       HERO / HOMEPAGE
+  ══════════════════════════════════════════ -->
+  <main id="homePage" class="page active">
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-badge">🔥 Updated Daily</div>
+        <h1 class="hero-title">
+          No cap, we explain<br />
+          <span class="gradient-text">every slang ever.</span>
+        </h1>
+        <p class="hero-sub">Your ultimate glossary for Gen Z language, internet lingo &amp; viral phrases.</p>
+
+        <!-- Search Bar -->
+        <div class="search-wrapper">
+          <div class="search-box" id="searchBox">
+            <span class="search-icon">🔍</span>
+            <input
+              type="text"
+              id="searchInput"
+              class="search-input"
+              placeholder="Search rizz, slay, delulu..."
+              autocomplete="off"
+              oninput="handleSearchInput(this.value)"
+              onkeydown="handleSearchKeydown(event)"
+            />
+            <button class="search-clear" id="searchClear" onclick="clearSearch()" style="display:none">✕</button>
+            <button class="search-submit" onclick="submitSearch()">Go →</button>
+          </div>
+          <!-- Autocomplete Dropdown -->
+          <div class="autocomplete-dropdown" id="autocompleteDropdown"></div>
+        </div>
+
+        <!-- Quick Tags -->
+        <div class="quick-tags">
+          <span class="tag-label">Trending:</span>
+          <button class="quick-tag" onclick="submitSearch('rizz')">rizz</button>
+          <button class="quick-tag" onclick="submitSearch('slay')">slay</button>
+          <button class="quick-tag" onclick="submitSearch('delulu')">delulu</button>
+          <button class="quick-tag" onclick="submitSearch('bussin')">bussin</button>
+          <button class="quick-tag" onclick="submitSearch('understood the assignment')">understood the assignment</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Word of the Day -->
+    <section class="wotd-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">✨ Word of the Day</h2>
+        </div>
+        <div class="wotd-card" id="wotdCard">
+          <div class="wotd-loading">Loading today's word...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trending Words -->
+    <section class="trending-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">🔥 Trending Right Now</h2>
+          <button class="see-all-btn" onclick="shuffleTrending()">Shuffle ↻</button>
+        </div>
+        <div class="trending-grid" id="trendingGrid">
+          <!-- Cards injected by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories-section">
+      <div class="container">
+        <h2 class="section-title">Browse by Vibe</h2>
+        <div class="category-pills" id="categoryPills">
+          <!-- Injected by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Made with 💜 for Gen Z &amp; the Chronically Online  <span onclick="showHome()" style="cursor:pointer"></span></p>
+    </footer>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════
+       RESULT PAGE
+  ══════════════════════════════════════════ -->
+  <div id="resultPage" class="page">
+
+    <div class="container result-container">
+      <button class="back-btn" onclick="showHome()">← Back</button>
+
+      <!-- Main Result Card -->
+      <div class="result-card" id="resultCard">
+        <!-- Injected by JS -->
+      </div>
+
+      <!-- More Like This -->
+      <div class="related-section" id="relatedSection">
+        <!-- Injected by JS -->
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       FAVORITES PAGE
+  ══════════════════════════════════════════ -->
+  <div id="favoritesPage" class="page">
+    <div class="container">
+      <button class="back-btn" onclick="showHome()">← Back</button>
+      <h2 class="section-title" style="margin-bottom:2rem">💾 Saved Words</h2>
+      <div id="favoritesGrid" class="trending-grid">
+        <!-- Injected by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       TOAST NOTIFICATION
+  ══════════════════════════════════════════ -->
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
